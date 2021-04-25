@@ -1,0 +1,24 @@
+name: Swift
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Xcode Version
+      run: /usr/bin/xcodebuild -version
+    - name: View All Xcode versions
+      run: ls /Applications | grep Xcode
+    - name: Dump file list
+      run: ls -R
+    - name: Dump Applications list
+      run: ls /Applications
+    - name: Build
+      run: /usr/bin/xcodebuild -workspace Example-iOS.xcworkspace -scheme Example-iOS -configuration "Debug"
